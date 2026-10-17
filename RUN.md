@@ -97,7 +97,7 @@ PINECONE_NAMESPACE=company-it-kb
 
 # Model Configuration
 GROQ_MODEL=openai/gpt-oss-20b
-GEMINI_MODEL=gemini-1.5-flash
+GEMINI_MODEL=gemini-3.8-flash
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 
 # Security
@@ -222,15 +222,21 @@ Open your browser to `http://127.0.0.1:8080` to access the full UI:
 - Ensure the index name and namespace are valid
 - Try deleting and recreating the index if dimension mismatch occurs
 
-### 3. Gemini API Rate Limit Errors (429)
+### 3. Groq API Issues
+**Symptoms**: 429 errors, timeout errors, or invalid responses
+**Solutions**:
+- Check your Groq API key validity
+- Verify you have sufficient credits on Groq
+- Check Groq service status at their status page
+- The project uses Groq for routing, grading, and query rewriting
+
+### 4. Gemini API Rate Limit Errors (429)
 **Symptoms**: "You have no credits remaining" or rate limit messages
 **Solutions**:
 - Add credits to your Gemini account at https://makersuite.google.com/app/billing
 - Check your usage at https://makersuite.google.com
 - Consider using a different Gemini model if available
 - Implement retry logic with exponential backoff (already partially implemented)
-
-### 4. Groq API Issues
 **Symptoms**: 429 errors, timeout errors, or invalid responses
 **Solutions**:
 - Check your Groq API key validity
@@ -316,7 +322,7 @@ PINECONE_API_KEY=your_key
 PINECONE_INDEX_NAME=fde-it-support-rag
 PINECONE_NAMESPACE=company-it-kb
 GROQ_MODEL=openai/gpt-oss-20b
-GEMINI_MODEL=gemini-1.5-flash
+GEMINI_MODEL=gemini-3.8-flash
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 ADMIN_API_KEY=your_secure_key
 APP_ENV=production

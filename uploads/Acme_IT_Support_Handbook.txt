@@ -1,0 +1,100 @@
+ACME CORP - IT SUPPORT HANDBOOK (TEST DOCUMENT)
+Version 1.0 | Owner: IT Service Desk | This is a fictional document for testing.
+
+=====================================================
+1. VPN ACCESS
+=====================================================
+Acme Corp uses the "Acme SecureConnect" VPN client for remote access.
+
+How to connect to the company VPN:
+1. Install Acme SecureConnect from the Company Portal (Windows and macOS).
+2. Open the app and enter the server address: vpn.acmecorp.example
+3. Sign in with your company email address and password.
+4. Approve the sign-in request in the Acme Authenticator app (MFA is mandatory).
+5. Wait for the status to show "Connected" (green shield icon).
+
+VPN troubleshooting:
+- If you see error VPN-809, disable any personal VPN or proxy and try again.
+- If the app says "MFA timeout", open Acme Authenticator and approve within 60 seconds.
+- VPN sessions disconnect automatically after 12 hours of use. Reconnect to continue.
+- Split tunneling is disabled. All traffic goes through the company network.
+
+=====================================================
+2. PASSWORD POLICY AND RESET
+=====================================================
+Password rules:
+- Minimum length is 14 characters.
+- Passwords must be changed every 90 days.
+- You cannot reuse your last 12 passwords.
+- Passwords must include upper case, lower case, a number, and a symbol.
+
+Account lockout:
+- An account is locked after 5 failed sign-in attempts.
+- A locked account unlocks automatically after 30 minutes, or immediately if the IT Service Desk unlocks it.
+
+How to reset your password:
+1. Go to https://reset.acmecorp.example
+2. Enter your company email address.
+3. Verify your identity using Acme Authenticator (MFA code).
+4. Choose a new password that follows the rules above.
+If you cannot access Acme Authenticator, call the IT Service Desk on extension 4357 (HELP). The agent will verify your employee ID and manager name before resetting.
+
+=====================================================
+3. MULTI-FACTOR AUTHENTICATION (MFA)
+=====================================================
+- MFA is required for email, VPN, and all cloud applications.
+- Use the Acme Authenticator app. SMS codes are not allowed.
+- If you get a new phone, raise a ticket titled "MFA device change" before wiping the old phone.
+- Never approve an MFA request you did not start. Report it to security@acmecorp.example immediately.
+
+=====================================================
+4. NEW LAPTOP SETUP
+=====================================================
+New employees receive a laptop on day one. Setup steps:
+1. Power on and connect to the Wi-Fi network "Acme-Secure" (use your company credentials).
+2. Sign in and let the device finish enrollment (about 20 minutes, do not shut down).
+3. Open the Company Portal and install the standard apps: Teams, Outlook, Acme SecureConnect, and the antivirus agent.
+4. Enable disk encryption if prompted. Encryption is mandatory.
+5. Restart the laptop when asked.
+Lost or stolen laptops must be reported to the IT Service Desk within 1 hour.
+
+=====================================================
+5. SOFTWARE ACCESS REQUESTS
+=====================================================
+- Request new software through the ServiceNow "Software Request" form.
+- Your manager must approve the request.
+- Approved standard software is installed within 2 business days.
+- Software that is not on the approved list needs a security review, which can take up to 10 business days.
+- Installing unapproved software without permission is not allowed.
+
+=====================================================
+6. EMAIL
+=====================================================
+- Each mailbox has a 50 GB limit.
+- The maximum attachment size is 25 MB. For larger files, share an OneDrive link instead.
+- Automatic email forwarding to personal accounts is blocked.
+
+=====================================================
+7. PHISHING AND SECURITY INCIDENTS
+=====================================================
+If you receive a suspicious email:
+1. Do not click links or open attachments.
+2. Click the "Report Phishing" button in Outlook.
+3. If you already clicked a link or entered your password, change your password immediately and email security@acmecorp.example within 1 hour.
+The Security Team will contact you with next steps.
+
+=====================================================
+8. MICROSOFT TEAMS OUTAGE - INTERNAL GUIDANCE
+=====================================================
+If Microsoft Teams is down or very slow:
+1. Check the internal status page at https://status.acmecorp.example before raising a ticket.
+2. Join the backup meeting bridge on Zoom: https://zoom.acmecorp.example/backup (code 482913).
+3. Post updates in the #it-outage channel in Slack, not in Teams.
+4. The IT Service Desk will send an email update every 30 minutes until Teams is restored.
+
+=====================================================
+9. IT SERVICE DESK CONTACT
+=====================================================
+- Phone: extension 4357 (HELP)
+- Email: helpdesk@acmecorp.example
+- Hours: Monday to Friday, 8:00 AM to 8:00 PM IST. Critical incidents are handled 24x7.

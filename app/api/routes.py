@@ -3,8 +3,9 @@ from pathlib import Path
 from fastapi import APIRouter, UploadFile, File, HTTPException, Header
 from pydantic import BaseModel, Field
 from app.core.config import get_settings
+from app.core.network import ExternalDnsError
 from app.rag.workflow import ask
-from app.rag.vectorstore import add_documents 
+from app.rag.vectorstore import add_documents
 from app.services.ingestion import load_file, chunk_documents, SUPPORTED
 from app.services.audit import write_audit
 
@@ -12,8 +13,15 @@ router = APIRouter(prefix="/api")
 settings = get_settings()
 logger = logging.getLogger(__name__)
 
+
 class ChatRequest(BaseModel):
     question: str = Field(min_length=2, max_length=3000)
+
+
+def _is_overloaded(exc: Exception) -> bool:
+    """True when Gemini says it is busy / rate limited (temporary problem)."""
+    text = str(exc).upper()
+    return any(w in text for w in ("503", "UNAVAILABLE", "HIGH DEMAND", "429", "RESOURCE_EXHAUSTED"))
 
 
 @router.get("/health")
@@ -33,10 +41,12 @@ def chat(payload: ChatRequest):
             "trace": result.get("trace", []),
             "citations": result.get("citations", []),
             "rewritten_query": result.get("current_query", payload.question),
-
         }
 
     except Exception as exc:
+        if isinstance(exc, ExternalDnsError):
+            logger.exception("DNS resolution failed while handling a chat request")
+            raise HTTPException(status_code=503, detail=str(exc)) from exc
         if getattr(exc, "winerror", None) == 10013 or "WinError 10013" in str(exc):
             logger.exception("Outbound network access was blocked while handling a chat request")
             raise HTTPException(
@@ -47,9 +57,17 @@ def chat(payload: ChatRequest):
                     "for Google Gemini, Pinecone, and Tavily, then retry."
                 ),
             ) from exc
+        if _is_overloaded(exc):
+            logger.exception("Gemini is overloaded even after retries and backup model")
+            raise HTTPException(
+                status_code=503,
+                detail="The AI service is busy right now. Please try again in a minute.",
+            ) from exc
         logger.exception("Chat request failed")
-        raise HTTPException(status_code=500, detail=str(exc)) from exc
-
+        raise HTTPException(
+            status_code=500,
+            detail="Something went wrong while processing your question. Please try again.",
+        ) from exc
 
 
 @router.post("/ingest")

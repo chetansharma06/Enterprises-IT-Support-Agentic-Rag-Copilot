@@ -317,7 +317,7 @@ PINECONE_NAMESPACE=company-it-kb
 
 # Model Configuration
 GROQ_MODEL=openai/gpt-oss-20b
-GEMINI_MODEL=gemini-1.5-flash
+GEMINI_MODEL=gemini-3.8-flash
 EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 
 # Security
@@ -338,7 +338,7 @@ APP_ENV=development
 | `PINECONE_INDEX_NAME` | Pinecone index name | `fde-it-support-rag` | ⚠️ Optional (default: `fde-it-support-rag`) |
 | `PINECONE_NAMESPACE` | Pinecone namespace for document isolation | `company-it-kb` | ⚠️ Optional (default: `company-it-kb`) |
 | `GROQ_MODEL` | Groq model identifier | `openai/gpt-oss-20b` | ⚠️ Optional (default: `openai/gpt-oss-20b`) |
-| `GEMINI_MODEL` | Gemini model identifier | `gemini-1.5-flash` | ⚠️ Optional (default: `gemini-1.5-flash`) |
+| `GEMINI_MODEL` | Gemini model identifier | `gemini-3.8-flash` | ⚠️ Optional (default: `gemini-3.8-flash`) |
 | `EMBEDDING_MODEL` | Embedding model for vectorization | `sentence-transformers/all-MiniLM-L6-v2` | ⚠️ Optional (default: `sentence-transformers/all-MiniLM-L6-v2`) |
 | `ADMIN_API_KEY` | Secret key for admin endpoints (document ingestion) | `your-secure-key` | ⚠️ Optional (default: `change-me`) |
 | `APP_ENV` | Application environment | `development` or `production` | ⚠️ Optional (default: `development`) |
